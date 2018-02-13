@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 
@@ -10,6 +7,26 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
+        public IActionResult Login()
+        {
+            return View();
+        }
+
+        public IActionResult Logout()
+        {
+            return View();
+        }
+
+        public IActionResult Info()
+        {
+            return Json(new
+            {
+                isAuthenticated = User.Identity.IsAuthenticated,
+                name = User.Identity.Name,
+                lastChanged = User.Claims.FirstOrDefault(claim => claim.Type == "LastChanged")?.Value
+            });
+        }
+        
         public IActionResult Index()
         {
             return View();

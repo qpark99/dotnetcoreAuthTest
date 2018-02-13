@@ -1,0 +1,12 @@
+﻿@model object
+
+@{
+    ViewBag.Title = "title";
+    Layout = "_Layout";
+}
+
+<h2>Login</h2>
+
+<form method="post" action="http://localhost:5002/api/auth/login?returnUrl=http://localhost:5000/home/info">
+    <input type="submit" value="로그인"/>
+</form>
