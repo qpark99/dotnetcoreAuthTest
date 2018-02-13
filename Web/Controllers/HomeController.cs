@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Net;
-using System.Security.Claims;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
 using Web.Models;
 
@@ -14,29 +7,14 @@ namespace Web.Controllers
 {
     public class HomeController : Controller
     {
-        public async Task<IActionResult> Login()
+        public IActionResult Login()
         {
-            var claims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, "email"),
-                new Claim("LastChanged", "LastChanged")
-            };
-
-            var claimsIdentity = new ClaimsIdentity(
-                claims, 
-                CookieAuthenticationDefaults.AuthenticationScheme);
-            
-            await HttpContext.SignInAsync(
-                CookieAuthenticationDefaults.AuthenticationScheme,
-                new ClaimsPrincipal(claimsIdentity));
-
-            return Redirect("/Home/Info");
+            return View();
         }
 
-        public async Task<IActionResult> Logout()
+        public IActionResult Logout()
         {
-            await HttpContext.SignOutAsync();
-            return Redirect("/Home/Info");
+            return View();
         }
 
         public IActionResult Info()
